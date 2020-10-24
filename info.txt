@@ -1,0 +1,5 @@
+https://medium.com/swlh/dockerizing-your-reactjs-application-c59109e97861
+
+docker build -t reactapp:dev .
+
+docker run -it -p 3000:3000 reactapp:dev

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-import { Header, Icon, List } from "semantic-ui-react";
+import { Header, Icon, List, Card} from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:5000/WeatherForecast").then((response) => {
+    axios.get("http://localhost:5000/api/values").then((response) => {
       this.setState({
         values: response.data,
       });
@@ -22,15 +22,19 @@ class App extends Component {
       <div>
         <Header as="h2">
           <Icon name="cloud" />
-          <Header.Content>Weather Report</Header.Content>P
+          <Header.Content>User Report</Header.Content>
         </Header>
-        <List>
+        <Card.Group>
           {this.state.values.map((item: any) => (
-            <List.Item key={item.date}>
-              {item.temperatureC} - {item.summary}
-            </List.Item>
+            <Card>
+            <Card.Content>
+              <Card.Header content={item.firstName}  />
+              <Card.Meta content={item.lastName} />
+              <Card.Description content='Team - Loan admin.' />
+            </Card.Content>
+          </Card>
           ))}
-        </List>
+        </Card.Group>
       </div>
     );
   }
